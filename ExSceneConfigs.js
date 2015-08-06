@@ -7,7 +7,7 @@ let {
   PixelRatio,
 } = React;
 
-import buildStyleInterpolator from 'buildStyleInterpolator';
+import buildStyleInterpolator from './vendor/buildStyleInterpolator';
 
 let ToTheLeft = {
   // Rotate *requires* you to break out each individual component of
