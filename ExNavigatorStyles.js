@@ -87,6 +87,4 @@ ExNavigatorStyles.barButtonTouchRetentionOffset = {
   bottom: 80,
 };
 
-ExNavigatorStyles.
-
-module.exports = ExNavigatorStyles;
+export default ExNavigatorStyles;

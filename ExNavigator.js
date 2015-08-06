@@ -6,13 +6,15 @@ let {
   PropTypes,
 } = React;
 
+import autobind from 'autobind-decorator';
+import invariant from 'invariant';
 import cloneReferencedElement from 'react-native-clone-referenced-element';
 
 import ExNavigatorStyles from './ExNavigatorStyles';
 import ExRouteRenderer from './ExRouteRenderer';
 import ExSceneConfigs from './ExSceneConfigs';
 
-import type * as ExRoute from './ExRoute';
+import type ExRoute from './ExRoute';
 
 export default class ExNavigator extends React.Component {
   static propTypes = {
@@ -23,12 +25,6 @@ export default class ExNavigator extends React.Component {
   static defaultProps = {
     showNavigationBar: true,
   };
-
-  constructor() {
-    super(props, context);
-    this._renderScene = this._renderScene.bind(this);
-    this._setNavigatorRef = this._setNavigatorRef.bind(this);
-  }
 
   render() {
     return (
@@ -44,6 +40,7 @@ export default class ExNavigator extends React.Component {
     );
   }
 
+  @autobind
   _renderScene(route: ExRoute, navigator: Navigator) {
     // We need to subscribe to the navigation context before the navigator is
     // mounted because it emits a didfocus event when it is mounted, before we
@@ -79,19 +76,20 @@ export default class ExNavigator extends React.Component {
   _setNavigatorRef(navigator) {
     this._navigator = navigator;
     if (navigator) {
-      if (!this._subscribedToFocusEvents) {
-        throw new Error('Expected to have subscribed to the navigator before ' +
-          'it was mounted.');
-      }
+      invariant(
+        this._subscribedToFocusEvents,
+        'Expected to have subscribed to the navigator before it was mounted.',
+      );
     } else {
       this._unsubscribeFromFocusEvents(navigator);
     }
   }
 
   _subscribeToFocusEvents(navigator) {
-    if (this._subscribedToFocusEvents) {
-      throw new Error('The navigator is already subscribed to focus events');
-    }
+    invariant(
+      !this._subscribedToFocusEvents,
+      'The navigator is already subscribed to focus events',
+    );
 
     let navigationContext = navigator.navigationContext;
     this._onWillFocusSubscription = navigationContext.addListener(
