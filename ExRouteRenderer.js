@@ -70,7 +70,7 @@ let navigationBarRouteMapper = {
   ): ?React.Component {
     let title = previousRoute.getTitle(navigator, previousIndex, state);
     if (title) {
-      let buttonText =
+      var buttonText =
         <Text style={[ExNavigatorStyles.barButtonText, ExNavigatorStyles.barBackButtonText]}>
           {title}
         </Text>;
