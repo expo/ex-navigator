@@ -1,0 +1,24 @@
+{
+  "name": "ex-navigator",
+  "version": "0.1.0",
+  "description": "Route-centric navigation built on top of React Native's Navigator",
+  "main": "ExNavigator.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/exponentjs/ex-navigator.git"
+  },
+  "keywords": [
+    "react-native"
+  ],
+  "author": "James Ide",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/exponentjs/ex-navigator/issues"
+  },
+  "homepage": "https://github.com/exponentjs/ex-navigator#readme",
+  "dependencies": {
+    "@exponent/react-native-responsive-image": "0.0.2",
+    "invariant": "^2.1.0",
+    "react-native-clone-referenced-element": "^1.0.0"
+  }
+}
