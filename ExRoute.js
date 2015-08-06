@@ -2,7 +2,7 @@
 
 import type { Component, Navigator } from 'react-native';
 
-export default type ExRoute = {
+export type ExRoute = {
   getTitle?: (navigator: Navigator, index: number, state: Object) => ?string;
   renderTitle?: (navigator: Navigator, index: number, state: Object) => ?Component;
   renderLeftButton?: (navigator: Navigator, index: number, state: Object) => ?Component;
