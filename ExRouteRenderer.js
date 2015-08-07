@@ -157,6 +157,7 @@ export default class ExRouteRenderer {
     return (
       <Component
         ref={component => { route.scene = component; }}
+        navigator={navigator}
       />
     );
   }
