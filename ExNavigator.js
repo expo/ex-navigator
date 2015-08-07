@@ -17,6 +17,9 @@ import ExSceneConfigs from './ExSceneConfigs';
 import type * as ExRoute from './ExRoute';
 
 export default class ExNavigator extends React.Component {
+  static Styles = ExNavigatorStyles
+  static SceneConfigs = ExSceneConfigs;
+
   static propTypes = {
     ...Navigator.props,
     showNavigationBar: PropTypes.bool,
@@ -26,12 +29,18 @@ export default class ExNavigator extends React.Component {
     showNavigationBar: true,
   };
 
+  constructor(props, context) {
+    super(props, context);
+    // TODO: Pass through styles
+    this._routeRenderer = new ExRouteRenderer({});
+  }
+
   render() {
     return (
       <Navigator
         {...this.props}
         ref={this._setNavigatorRef}
-        configureScene={ExRouteRenderer.configureScene}
+        configureScene={this._routeRenderer.configureScene}
         renderScene={this._renderScene}
         navigationBar={this._renderNavigationBar()}
         sceneStyle={[ExNavigatorStyles.scene, this.props.sceneStyle]}
@@ -49,7 +58,7 @@ export default class ExNavigator extends React.Component {
       this._subscribeToFocusEvents(navigator);
     }
 
-    let scene = ExRouteRenderer.renderScene(route, navigator);
+    let scene = this._routeRenderer.renderScene(route, navigator);
     let firstRoute = navigator.getCurrentRoutes()[0];
     if (route === firstRoute) {
       scene = cloneReferencedElement(scene, {
@@ -66,7 +75,7 @@ export default class ExNavigator extends React.Component {
 
     return (
       <Navigator.NavigationBar
-        routeMapper={ExRouteRenderer.navigationBarRouteMapper}
+        routeMapper={this._routeRenderer.navigationBarRouteMapper}
         style={ExNavigatorStyles.bar}
       />
     );
@@ -94,11 +103,11 @@ export default class ExNavigator extends React.Component {
     let navigationContext = navigator.navigationContext;
     this._onWillFocusSubscription = navigationContext.addListener(
       'willfocus',
-      ExRouteRenderer.onWillFocus,
+      this._routeRenderer.onWillFocus,
     );
     this._onDidFocusSubscription = navigationContext.addListener(
       'didfocus',
-      ExRouteRenderer.onDidFocus,
+      this._routeRenderer.onDidFocus,
     );
     this._subscribedToFocusEvents = true;
   }
@@ -159,8 +168,3 @@ export default class ExNavigator extends React.Component {
     return this._navigator.popToTop();
   }
 }
-
-export {
-  ExNavigatorStyles as Styles,
-  ExSceneConfigs as SceneConfigs,
-};

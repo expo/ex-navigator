@@ -10,6 +10,7 @@ let {
 } = React;
 import ResponsiveImage from '@exponent/react-native-responsive-image';
 
+import autobind from 'autobind-decorator';
 import invariant from 'invariant';
 import cloneReferencedElement from 'react-native-clone-referenced-element';
 
@@ -20,7 +21,19 @@ import Layout from './Layout';
 import type { Navigator } from 'react-native';
 import type * as ExRoute from './ExRoute';
 
-let navigationBarRouteMapper = {
+type BarStyles = {
+  titleStyle?: any;
+  barButtonTextStyle?: any;
+  barButtonIconStyle?: any;
+};
+
+class NavigationBarRouteMapper {
+  constructor(styles: BarStyles) {
+    this._titleStyle = styles.titleStyle;
+    this._barButtonTextStyle = styles.barButtonTextStyle;
+    this._barButtonIconStyle = styles.barButtonIconStyle;
+  }
+
   Title(
     route: ExRoute,
     navigator: Navigator,
@@ -36,11 +49,11 @@ let navigationBarRouteMapper = {
     }
 
     return (
-      <Text style={ExNavigatorStyles.barTitleText}>
+      <Text style={[ExNavigatorStyles.barTitleText, this._titleStyle]}>
         {shortenTitle(route.getTitle(navigator, index, state))}
       </Text>
     );
-  },
+  }
 
   LeftButton(
     route: ExRoute,
@@ -60,7 +73,7 @@ let navigationBarRouteMapper = {
     let previousIndex = index - 1;
     let previousRoute = state.routeStack[previousIndex];
     return this._renderBackButton(previousRoute, navigator, previousIndex, state);
-  },
+  }
 
   _renderBackButton(
     previousRoute: ExRoute,
@@ -71,7 +84,11 @@ let navigationBarRouteMapper = {
     let title = previousRoute.getTitle(navigator, previousIndex, state);
     if (title) {
       var buttonText =
-        <Text style={[ExNavigatorStyles.barButtonText, ExNavigatorStyles.barBackButtonText]}>
+        <Text style={[
+          ExNavigatorStyles.barButtonText,
+          ExNavigatorStyles.barBackButtonText,
+          this._barButtonTextStyle,
+        ]}>
           {title}
         </Text>;
     }
@@ -80,18 +97,22 @@ let navigationBarRouteMapper = {
       <TouchableOpacity
         touchRetentionOffset={ExNavigatorStyles.barButtonTouchRetentionOffset}
         onPress={() => navigator.pop()}
-        style={[ExNavigatorStyles.barBackButton, styles.backButton]}>
+        style={[ExNavigatorStyles.barBackButton, styles.backButtonStyle]}>
         <ResponsiveImage
           sources={{
             2: {uri: 'http://static.exp.host/NavigationBarBack@2x.png'},
             3: {uri: 'http://static.exp.host/NavigationBarBack@3x.png'},
           }}
-          style={[ExNavigatorStyles.barButtonIcon, styles.backIcon]}
+          style={[
+            ExNavigatorStyles.barButtonIcon,
+            styles.backIcon,
+            this._barButtonIconStyle,
+          ]}
         />
         {buttonText}
       </TouchableOpacity>
     );
-  },
+  }
 
   RightButton(
     route: ExRoute,
@@ -102,12 +123,15 @@ let navigationBarRouteMapper = {
     if (route.renderRightButton) {
       return route.renderRightButton(navigator, index, state);
     }
-  },
+  }
 };
 
-let ExRouteRenderer = {
-  navigationBarRouteMapper,
+export default class ExRouteRenderer {
+  constructor(styles: BarStyles) {
+    this.navigationBarRouteMapper = new NavigationBarRouteMapper(styles);
+  }
 
+  @autobind
   configureScene(route: ExRoute): Object {
     if (route.configureScene) {
       let sceneConfig = route.configureScene();
@@ -116,24 +140,28 @@ let ExRouteRenderer = {
       }
     }
     return ExSceneConfigs.PushFromRight;
-  },
+  }
 
+  @autobind
   renderScene(route: ExRoute, navigator: Navigator): React.Component {
     if (route.renderScene) {
       return cloneReferencedElement(route.renderScene(navigator), {
         ref: component => { route.scene = component; },
       });
     }
-    invariant(route.getSceneClass, 'The route must implement renderScene or getSceneClass');
+    invariant(
+      route.getSceneClass,
+      'The route must implement renderScene or getSceneClass',
+    );
     let Component = route.getSceneClass();
     return (
       <Component
         ref={component => { route.scene = component; }}
-        navigator={navigator}
       />
     );
-  },
+  }
 
+  @autobind
   onWillFocus(event) {
     let { data: { route } } = event;
     if (route.onWillFocus) {
@@ -141,19 +169,20 @@ let ExRouteRenderer = {
     }
     // The component isn't mounted yet if this is the first time it's rendered
     if (route.scene && route.scene.componentWillFocus) {
-      route.scene.componentWillFocus();
+      route.scene.componentWillFocus(event);
     }
-  },
+  }
 
+  @autobind
   onDidFocus(event) {
     let { data: { route } } = event;
     if (route.onDidFocus) {
       route.onDidFocus(event);
     }
     if (route.scene.componentDidFocus) {
-      route.scene.componentDidFocus();
+      route.scene.componentDidFocus(event);
     }
-  },
+  }
 };
 
 // Long titles will run into the left and right button text or overflow even
