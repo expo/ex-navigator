@@ -120,6 +120,10 @@ export default class ExNavigator extends React.Component {
 
   // Navigator methods
 
+  get navigationContext() {
+    return this._navigator.navigationContext;
+  }
+
   getCurrentRoutes() {
     return this._navigator.getCurrentRoutes();
   }
