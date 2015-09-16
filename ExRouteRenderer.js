@@ -128,6 +128,7 @@ class NavigationBarRouteMapper {
 
 export default class ExRouteRenderer {
   constructor(styles: BarStyles) {
+    this._previousRoute = null;
     this.navigationBarRouteMapper = new NavigationBarRouteMapper(styles);
   }
 
@@ -172,6 +173,10 @@ export default class ExRouteRenderer {
     if (route.scene && route.scene.componentWillFocus) {
       route.scene.componentWillFocus(event);
     }
+
+    if (this._previousRoute && this._previousRoute.onWillBlur) {
+      this._previousRoute.onWillBlur(event);
+    }
   }
 
   @autobind
@@ -183,6 +188,11 @@ export default class ExRouteRenderer {
     if (route.scene.componentDidFocus) {
       route.scene.componentDidFocus(event);
     }
+
+    if (this._previousRoute && this._previousRoute.onDidBlur) {
+      this._previousRoute.onDidBlur(event);
+    }
+    this._previousRoute = route;
   }
 };
 

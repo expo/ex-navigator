@@ -2,8 +2,11 @@
 
 import React from 'react-native';
 let {
+  Image,
   Navigator,
   PropTypes,
+  Text,
+  View,
 } = React;
 
 import autobind from 'autobind-decorator';
@@ -23,6 +26,10 @@ export default class ExNavigator extends React.Component {
   static propTypes = {
     ...Navigator.props,
     showNavigationBar: PropTypes.bool,
+    navigationBarStyle: View.propTypes.style,
+    titleStyle: Text.propTypes.style,
+    barButtonTextStyle: Text.propTypes.style,
+    barButtonIconStyle: Image.propTypes.style,
   };
 
   static defaultProps = {
@@ -31,8 +38,12 @@ export default class ExNavigator extends React.Component {
 
   constructor(props, context) {
     super(props, context);
-    // TODO: Pass through styles
-    this._routeRenderer = new ExRouteRenderer({});
+    // NOTE: currently only the initial props are honored
+    this._routeRenderer = new ExRouteRenderer({
+      titleStyle: props.titleStyle,
+      barButtonTextStyle: props.barButtonTextStyle,
+      barButtonIconStyle: props.barButtonIconStyle,
+    });
   }
 
   render() {
@@ -76,7 +87,7 @@ export default class ExNavigator extends React.Component {
     return (
       <Navigator.NavigationBar
         routeMapper={this._routeRenderer.navigationBarRouteMapper}
-        style={ExNavigatorStyles.bar}
+        style={[ExNavigatorStyles.bar, this.props.navigationBarStyle]}
       />
     );
   }
@@ -172,3 +183,5 @@ export default class ExNavigator extends React.Component {
     return this._navigator.popToTop();
   }
 }
+
+export type ExRoute = ExRoute;
