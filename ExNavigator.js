@@ -184,4 +184,4 @@ export default class ExNavigator extends React.Component {
   }
 }
 
-export type ExRoute = ExRoute;
+export * from './ExRoute';
