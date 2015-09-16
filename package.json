@@ -8,7 +8,8 @@
     "url": "git+https://github.com/exponentjs/ex-navigator.git"
   },
   "keywords": [
-    "react-native"
+    "react-native",
+    "navigator"
   ],
   "author": "James Ide",
   "license": "MIT",
@@ -17,8 +18,8 @@
   },
   "homepage": "https://github.com/exponentjs/ex-navigator#readme",
   "dependencies": {
-    "@exponent/react-native-responsive-image": "0.0.2",
-    "autobind-decorator": "^1.2.0",
+    "@exponent/react-native-responsive-image": "0.0.4",
+    "autobind-decorator": "^1.3.2",
     "invariant": "^2.1.0",
     "react-native-clone-referenced-element": "^1.0.0"
   }
