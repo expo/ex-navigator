@@ -20,9 +20,11 @@ You'll also need to enable several ES6 and ES7 features with Babel. In the root 
 
 ```js
 {
-  "es6.modules",
-  "es7.classProperties",
-  "es7.decorators",
+  "whitelist": [
+    "es6.modules",
+    "es7.classProperties",
+    "es7.decorators"
+  ]
 }
 ```
 
