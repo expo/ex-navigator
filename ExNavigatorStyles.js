@@ -73,6 +73,8 @@ let ExNavigatorStyles = StyleSheet.create({
   barBackButton: {
     paddingRight: 40,
     paddingBottom: 12,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
   },
   barBackButtonText: {
     marginTop: 11,
