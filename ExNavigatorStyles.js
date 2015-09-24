@@ -9,9 +9,7 @@ import Colors from './Colors';
 import Layout from './Layout';
 
 let ExNavigatorStyles = StyleSheet.create({
-  navigator: {
-    backgroundColor: '#000',
-  },
+  navigator: { },
   scene: {
     backgroundColor: '#fff',
     top: 0,

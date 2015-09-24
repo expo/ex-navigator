@@ -3,6 +3,7 @@
 import React from 'react-native';
 let {
   Image,
+  Platform,
   StyleSheet,
   Text,
   TouchableOpacity,
@@ -140,7 +141,12 @@ export default class ExRouteRenderer {
         return sceneConfig;
       }
     }
-    return ExSceneConfigs.PushFromRight;
+
+    if (Platform.OS === 'android') {
+      return ExSceneConfigs.Fade;
+    } else {
+      return ExSceneConfigs.PushFromRight;
+    }
   }
 
   @autobind

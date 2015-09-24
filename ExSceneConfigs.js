@@ -174,13 +174,7 @@ let FromTheFront = {
 };
 
 let ExSceneConfigs = {
-  PushFromRight: {
-    ...Navigator.SceneConfigs.PushFromRight,
-    animationInterpolators: {
-      into: buildStyleInterpolator(FromTheRight),
-      out: buildStyleInterpolator(ToTheLeft),
-    },
-  },
+  Fade: Navigator.SceneConfigs.FadeAndroid,
   FloatFromRight: {
     ...Navigator.SceneConfigs.FloatFromRight,
     animationInterpolators: {
@@ -193,6 +187,13 @@ let ExSceneConfigs = {
     animationInterpolators: {
       into: buildStyleInterpolator(FromTheBottom),
       out: buildStyleInterpolator(Still),
+    },
+  },
+  PushFromRight: {
+    ...Navigator.SceneConfigs.PushFromRight,
+    animationInterpolators: {
+      into: buildStyleInterpolator(FromTheRight),
+      out: buildStyleInterpolator(ToTheLeft),
     },
   },
   ZoomFromFront: {
