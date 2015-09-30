@@ -6,10 +6,6 @@ The API is in ExRoute.js and ExRouteRenderer.js.
 
 Otherwise ExNavigator is very similar to Navigator.
 
-## Important
-
-This component relies on some APIs we include with Exponent and may not work for you in other environments until the React Native team merges our pull requests.
-
 ## Installation
 
 ```
@@ -31,6 +27,8 @@ You'll also need to enable several ES6 and ES7 features with Babel. In the root 
 ## Usage
 
 ExNavigator's component API looks very similar to Navigator's. You specify a `routeStack` and/or `initialRoute`, along with some styles. ExNavigator will render the navigation bar for you and accepts some props to style its contents. See `ExNavigator.propTypes` for the list of accepted props.
+
+**You must use JavaScript's `import` keyword to import ExNavigator. Do not use `require()`.**
 
 ```js
 import ExNavigator from '@exponent/react-native-navigator';
