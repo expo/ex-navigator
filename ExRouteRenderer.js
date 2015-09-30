@@ -82,7 +82,15 @@ class NavigationBarRouteMapper {
     previousIndex: number,
     state: Object
   ): ?React.Component {
-    let title = previousRoute.getTitle(navigator, previousIndex, state);
+    if (previousRoute.renderBackButton) {
+      return previousRoute.renderBackButton(navigator, previousIndex, state);
+    }
+
+    let title;
+    if (previousRoute.getTitle) {
+      title = previousRoute.getTitle(navigator, previousIndex, state);
+    }
+
     if (title) {
       var buttonText =
         <Text style={[
