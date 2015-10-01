@@ -46,6 +46,10 @@ export default class ExNavigator extends React.Component {
     });
   }
 
+  get navigationContext() {
+    return this._navigator ? this._navigator.navigationContext : null;
+  }
+
   render() {
     return (
       <Navigator
