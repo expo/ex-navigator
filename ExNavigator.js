@@ -66,10 +66,10 @@ export default class ExNavigator extends React.Component {
     // mounted because it emits a didfocus event when it is mounted, before we
     // can get a ref to it
     if (!this._subscribedToFocusEvents) {
-      this._subscribeToFocusEvents(navigator);
+      this._subscribeToFocusEvents(this);
     }
 
-    let scene = this._routeRenderer.renderScene(route, navigator);
+    let scene = this._routeRenderer.renderScene(route, this);
     let firstRoute = navigator.getCurrentRoutes()[0];
     if (route === firstRoute) {
       scene = cloneReferencedElement(scene, {
