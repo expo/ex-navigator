@@ -30,10 +30,16 @@ export default class ExNavigator extends React.Component {
     titleStyle: Text.propTypes.style,
     barButtonTextStyle: Text.propTypes.style,
     barButtonIconStyle: Image.propTypes.style,
+    renderNavigationBar: PropTypes.func,
+    augmentScene: PropTypes.func,
   };
 
   static defaultProps = {
+    ...Navigator.defaultProps,
     showNavigationBar: true,
+    renderNavigationBar: props => {
+      return <Navigator.NavigationBar {...props} />
+    },
   };
 
   constructor(props, context) {
@@ -44,10 +50,6 @@ export default class ExNavigator extends React.Component {
       barButtonTextStyle: props.barButtonTextStyle,
       barButtonIconStyle: props.barButtonIconStyle,
     });
-  }
-
-  get navigationContext() {
-    return this._navigator ? this._navigator.navigationContext : null;
   }
 
   render() {
@@ -70,10 +72,13 @@ export default class ExNavigator extends React.Component {
     // mounted because it emits a didfocus event when it is mounted, before we
     // can get a ref to it
     if (!this._subscribedToFocusEvents) {
-      this._subscribeToFocusEvents(this);
+      this._subscribeToFocusEvents(navigator);
     }
 
     let scene = this._routeRenderer.renderScene(route, this);
+    if (typeof this.props.augmentScene === 'function') {
+      scene = this.props.augmentScene(scene, route);
+    }
     let firstRoute = navigator.getCurrentRoutes()[0];
     if (route === firstRoute) {
       scene = cloneReferencedElement(scene, {
@@ -88,12 +93,10 @@ export default class ExNavigator extends React.Component {
       return null;
     }
 
-    return (
-      <Navigator.NavigationBar
-        routeMapper={this._routeRenderer.navigationBarRouteMapper}
-        style={[ExNavigatorStyles.bar, this.props.navigationBarStyle]}
-      />
-    );
+    return this.props.renderNavigationBar({
+      routeMapper: this._routeRenderer.navigationBarRouteMapper,
+      style: [ExNavigatorStyles.bar, this.props.navigationBarStyle],
+    });
   }
 
   @autobind
@@ -137,6 +140,10 @@ export default class ExNavigator extends React.Component {
 
   get navigationContext() {
     return this._navigator.navigationContext;
+  }
+
+  get parentNavigator() {
+    return this._navigator.parentNavigator;
   }
 
   getCurrentRoutes() {
