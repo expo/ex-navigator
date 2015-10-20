@@ -46,7 +46,7 @@ export default class ExNavigator extends React.Component {
   constructor(props, context) {
     super(props, context);
     // NOTE: currently only the initial props are honored
-    this._routeRenderer = new ExRouteRenderer({
+    this._routeRenderer = new ExRouteRenderer(this, {
       titleStyle: props.titleStyle,
       barButtonTextStyle: props.barButtonTextStyle,
       barButtonIconStyle: props.barButtonIconStyle,

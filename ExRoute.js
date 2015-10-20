@@ -1,14 +1,15 @@
 'use strict';
 
-import type { Component, Navigator } from 'react-native';
+import type { Component } from 'react-native';
+import type * as ExNavigator from './ExNavigator';
 
 export type ExRoute = {
-  getTitle?: (navigator: Navigator, index: number, state: Object) => ?string;
-  renderTitle?: (navigator: Navigator, index: number, state: Object) => ?Component;
-  renderLeftButton?: (navigator: Navigator, index: number, state: Object) => ?Component;
-  renderRightButton?: (navigator: Navigator, index: number, state: Object) => ?Component;
-  renderBackButton?: (navigator: Navigator, index: number, state: Object) => ?Component;
+  getTitle?: (navigator: ExNavigator, index: number, state: Object) => ?string;
+  renderTitle?: (navigator: ExNavigator, index: number, state: Object) => ?Component;
+  renderLeftButton?: (navigator: ExNavigator, index: number, state: Object) => ?Component;
+  renderRightButton?: (navigator: ExNavigator, index: number, state: Object) => ?Component;
+  renderBackButton?: (navigator: ExNavigator, index: number, state: Object) => ?Component;
   getSceneClass?: () => typeof Component;
   configureScene?: () => typeof Navigator.SceneConfigs.PushFromRight;
-  renderScene?: (navigator: Navigator, onRef: Function) => Component;
+  renderScene?: (navigator: ExNavigator) => Component;
 };

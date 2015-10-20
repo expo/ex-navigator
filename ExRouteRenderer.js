@@ -20,6 +20,7 @@ import ExSceneConfigs from './ExSceneConfigs';
 import Layout from './Layout';
 
 import type { Navigator } from 'react-native';
+import type * as ExNavigator from './ExNavigator';
 import type * as ExRoute from './ExRoute';
 
 type BarStyles = {
@@ -29,7 +30,8 @@ type BarStyles = {
 };
 
 class NavigationBarRouteMapper {
-  constructor(styles: BarStyles) {
+  constructor(navigator: ExNavigator, styles: BarStyles) {
+    this._navigator = navigator;
     this._titleStyle = styles.titleStyle;
     this._barButtonTextStyle = styles.barButtonTextStyle;
     this._barButtonIconStyle = styles.barButtonIconStyle;
@@ -42,7 +44,7 @@ class NavigationBarRouteMapper {
     state: Object
   ): ?React.Component {
     if (route.renderTitle) {
-      return route.renderTitle(navigator, index, state);
+      return route.renderTitle(this._navigator, index, state);
     }
 
     if (!route.getTitle) {
@@ -51,7 +53,7 @@ class NavigationBarRouteMapper {
 
     return (
       <Text style={[ExNavigatorStyles.barTitleText, this._titleStyle]}>
-        {shortenTitle(route.getTitle(navigator, index, state))}
+        {shortenTitle(route.getTitle(this._navigator, index, state))}
       </Text>
     );
   }
@@ -64,7 +66,7 @@ class NavigationBarRouteMapper {
   ): ?React.Component {
 
     if (route.renderLeftButton) {
-      return route.renderLeftButton(navigator, index, state);
+      return route.renderLeftButton(this._navigator, index, state);
     }
 
     if (index === 0) {
@@ -73,7 +75,7 @@ class NavigationBarRouteMapper {
 
     let previousIndex = index - 1;
     let previousRoute = state.routeStack[previousIndex];
-    return this._renderBackButton(previousRoute, navigator, previousIndex, state);
+    return this._renderBackButton(previousRoute, this._navigator, previousIndex, state);
   }
 
   _renderBackButton(
@@ -83,12 +85,12 @@ class NavigationBarRouteMapper {
     state: Object
   ): ?React.Component {
     if (previousRoute.renderBackButton) {
-      return previousRoute.renderBackButton(navigator, previousIndex, state);
+      return previousRoute.renderBackButton(this._navigator, previousIndex, state);
     }
 
     let title;
     if (previousRoute.getTitle) {
-      title = previousRoute.getTitle(navigator, previousIndex, state);
+      title = previousRoute.getTitle(this._navigator, previousIndex, state);
     }
 
     if (title) {
@@ -105,7 +107,7 @@ class NavigationBarRouteMapper {
     return (
       <TouchableOpacity
         touchRetentionOffset={ExNavigatorStyles.barButtonTouchRetentionOffset}
-        onPress={() => navigator.pop()}
+        onPress={() => this._navigator.pop()}
         style={[ExNavigatorStyles.barBackButton, styles.backButtonStyle]}>
         <ResponsiveImage
           sources={{
@@ -130,15 +132,18 @@ class NavigationBarRouteMapper {
     state: Object
   ): ?React.Component {
     if (route.renderRightButton) {
-      return route.renderRightButton(navigator, index, state);
+      return route.renderRightButton(this._navigator, index, state);
     }
   }
 };
 
 export default class ExRouteRenderer {
-  constructor(styles: BarStyles) {
+  constructor(navigator: ExNavigator, styles: BarStyles) {
     this._previousRoute = null;
-    this.navigationBarRouteMapper = new NavigationBarRouteMapper(styles);
+    this.navigationBarRouteMapper = new NavigationBarRouteMapper(
+      navigator,
+      styles,
+    );
   }
 
   @autobind
@@ -158,7 +163,7 @@ export default class ExRouteRenderer {
   }
 
   @autobind
-  renderScene(route: ExRoute, navigator: Navigator): React.Component {
+  renderScene(route: ExRoute, navigator: ExNavigator): React.Component {
     if (route.renderScene) {
       return cloneReferencedElement(route.renderScene(navigator), {
         ref: component => { route.scene = component; },
