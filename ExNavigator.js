@@ -13,6 +13,7 @@ import autobind from 'autobind-decorator';
 import invariant from 'invariant';
 import cloneReferencedElement from 'react-native-clone-referenced-element';
 
+import ExNavigatorMixin from './ExNavigatorMixin';
 import ExNavigatorStyles from './ExNavigatorStyles';
 import ExRouteRenderer from './ExRouteRenderer';
 import ExSceneConfigs from './ExSceneConfigs';
@@ -101,7 +102,7 @@ export default class ExNavigator extends React.Component {
 
   @autobind
   _setNavigatorRef(navigator) {
-    this._navigator = navigator;
+    this.__navigator = navigator;
     if (navigator) {
       invariant(
         this._subscribedToFocusEvents,
@@ -136,63 +137,17 @@ export default class ExNavigator extends React.Component {
     this._subscribedToFocusEvents = false;
   }
 
-  // Navigator methods
+  // Navigator properties
 
   get navigationContext() {
-    return this._navigator.navigationContext;
+    return this.__navigator.navigationContext;
   }
 
   get parentNavigator() {
-    return this._navigator.parentNavigator;
-  }
-
-  getCurrentRoutes() {
-    return this._navigator.getCurrentRoutes();
-  }
-
-  jumpBack() {
-    return this._navigator.jumpBack();
-  }
-
-  jumpForward() {
-    return this._navigator.jumpForward();
-  }
-
-  jumpTo(route) {
-    return this._navigator.jumpTo(route);
-  }
-
-  push(route) {
-    return this._navigator.push(route);
-  }
-
-  pop() {
-    return this._navigator.pop();
-  }
-
-  replace(route) {
-    return this._navigator.replace(route);
-  }
-
-  replaceAtIndex(route, index) {
-    return this._navigator.replaceAtIndex(route, index);
-  }
-
-  replacePrevious(route) {
-    return this._navigator.replacePrevious(route);
-  }
-
-  immediatelyResetRouteStack(routeStack) {
-    return this._navigator.immediatelyResetRouteStack(routeStack);
-  }
-
-  popToRoute(route) {
-    return this._navigator.popToRoute(route);
-  }
-
-  popToTop() {
-    return this._navigator.popToTop();
+    return this.__navigator.parentNavigator;
   }
 }
+
+Object.assign(ExNavigator.prototype, ExNavigatorMixin);
 
 export * from './ExRoute';
