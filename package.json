@@ -1,6 +1,6 @@
 {
   "name": "@exponent/react-native-navigator",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Route-centric navigation built on top of React Native's Navigator",
   "main": "ExNavigator.js",
   "repository": {
@@ -9,7 +9,10 @@
   },
   "keywords": [
     "react-native",
-    "navigator"
+    "react-component",
+    "navigator",
+    "ios",
+    "android"
   ],
   "author": "James Ide",
   "license": "MIT",
