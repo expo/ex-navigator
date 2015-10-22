@@ -144,7 +144,15 @@ export default class ExNavigator extends React.Component {
   }
 
   get parentNavigator() {
-    return this.__navigator.parentNavigator;
+    // Navigator sets its `parentNavigator` property in componentWillMount, but
+    // we don't get a reference to the Navigator until it has been mounted. So
+    // there is a window of time during which the Navigator's `parentNavigator`
+    // property has been set but we don't have a reference to the Navigator;
+    // when that happens we'll simulate Navigator and return our `navigator`
+    // prop.
+    return !this.__navigator ?
+      this.props.navigator :
+      this.__navigator.parentNavigator;
   }
 }
 
