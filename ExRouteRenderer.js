@@ -165,10 +165,15 @@ export default class ExRouteRenderer {
   @autobind
   renderScene(route: ExRoute, navigator: ExNavigator): React.Component {
     if (route.renderScene) {
-      return cloneReferencedElement(route.renderScene(navigator), {
+      let scene = route.renderScene(navigator);
+      if (!scene) {
+        return scene;
+      }
+      return cloneReferencedElement(scene, {
         ref: component => { route.scene = component; },
       });
     }
+
     invariant(
       route.getSceneClass,
       'The route must implement renderScene or getSceneClass',
