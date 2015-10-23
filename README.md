@@ -6,6 +6,9 @@ The API is in ExRoute.js and ExRouteRenderer.js.
 
 Otherwise ExNavigator is very similar to Navigator.
 
+## Why?
+[This post](https://medium.com/the-exponent-log/routing-and-navigation-in-react-native-6b27bee39603#.13j2waolq) explains the ideas that are in ExNavigator and how we use it so you can assess whether it is useful for your project, too.
+
 ## Installation
 
 ```
