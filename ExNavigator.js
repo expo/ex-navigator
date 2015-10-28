@@ -76,6 +76,10 @@ export default class ExNavigator extends React.Component {
       this._subscribeToFocusEvents(navigator);
     }
 
+    // We need to save a reference to the navigator already. Otherwise this
+    // would crash if the route calls any method on us in the first render-pass.
+    this.__navigator = navigator;
+
     let scene = this._routeRenderer.renderScene(route, this);
     if (typeof this.props.augmentScene === 'function') {
       scene = this.props.augmentScene(scene, route);
