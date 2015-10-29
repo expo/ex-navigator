@@ -1,11 +1,10 @@
 'use strict';
 
-import React from 'react-native';
-let {
+import React, {
   Dimensions,
   Navigator,
   PixelRatio,
-} = React;
+} from 'react-native';
 
 import buildStyleInterpolator from './vendor/buildStyleInterpolator';
 

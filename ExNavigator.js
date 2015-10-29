@@ -1,13 +1,12 @@
 'use strict';
 
-import React from 'react-native';
-let {
+import React, {
   Image,
   Navigator,
   PropTypes,
   Text,
   View,
-} = React;
+} from 'react-native';
 
 import autobind from 'autobind-decorator';
 import invariant from 'invariant';

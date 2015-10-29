@@ -1,12 +1,9 @@
 'use strict';
 
-import React from 'react-native';
-let {
+import {
   PixelRatio,
-} = React;
+} from 'react-native';
 
-let Layout = {
+export default {
   pixel: 1 / PixelRatio.get(),
 };
-
-export default Layout;

@@ -1,9 +1,8 @@
 'use strict';
 
-import React from 'react-native';
-let {
+import React, {
   StyleSheet,
-} = React;
+} from 'react-native';
 
 import Colors from './Colors';
 import Layout from './Layout';
