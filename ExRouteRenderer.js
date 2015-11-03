@@ -196,6 +196,10 @@ export default class ExRouteRenderer {
     if (this._previousRoute && this._previousRoute.onWillBlur) {
       this._previousRoute.onWillBlur(event);
     }
+
+    if (this._previousRoute && this._previousRoute.scene && this._previousRoute.scene.componentWillBlur) {
+      this._previousRoute.scene.componentWillBlur(event);
+    }
   }
 
   @autobind
@@ -211,6 +215,10 @@ export default class ExRouteRenderer {
     if (this._previousRoute && this._previousRoute.onDidBlur) {
       this._previousRoute.onDidBlur(event);
     }
+    if (this._previousRoute && this._previousRoute.scene && this._previousRoute.scene.componentDidBlur) {
+      this._previousRoute.scene.componentDidBlur(event);
+    }
+
     this._previousRoute = route;
   }
 };
