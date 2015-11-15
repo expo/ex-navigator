@@ -193,12 +193,13 @@ export default class ExRouteRenderer {
       route.scene.componentWillFocus(event);
     }
 
-    if (this._previousRoute && this._previousRoute.onWillBlur) {
-      this._previousRoute.onWillBlur(event);
-    }
-
-    if (this._previousRoute && this._previousRoute.scene && this._previousRoute.scene.componentWillBlur) {
-      this._previousRoute.scene.componentWillBlur(event);
+    if (this._previousRoute) {
+      if (this._previousRoute.onWillBlur) {
+        this._previousRoute.onWillBlur(event);
+      }
+      if (this._previousRoute.scene.componentWillBlur) {
+        this._previousRoute.scene.componentWillBlur(event);
+      }
     }
   }
 
@@ -212,13 +213,14 @@ export default class ExRouteRenderer {
       route.scene.componentDidFocus(event);
     }
 
-    if (this._previousRoute && this._previousRoute.onDidBlur) {
-      this._previousRoute.onDidBlur(event);
+    if (this._previousRoute) {
+      if (this._previousRoute.onDidBlur) {
+        this._previousRoute.onDidBlur(event);
+      }
+      if (this._previousRoute.scene.componentDidBlur) {
+        this._previousRoute.scene.componentDidBlur(event);
+      }
     }
-    if (this._previousRoute && this._previousRoute.scene && this._previousRoute.scene.componentDidBlur) {
-      this._previousRoute.scene.componentDidBlur(event);
-    }
-
     this._previousRoute = route;
   }
 };
