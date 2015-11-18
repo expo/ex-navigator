@@ -193,11 +193,12 @@ export default class ExRouteRenderer {
       route.scene.componentWillFocus(event);
     }
 
-    if (this._previousRoute) {
-      if (this._previousRoute.onWillBlur) {
-        this._previousRoute.onWillBlur(event);
+    let previousRoute = this._previousRoute;
+    if (previousRoute) {
+      if (previousRoute.onWillBlur) {
+        previousRoute.onWillBlur(event);
       }
-      let previousScene = this._previousRoute.scene;
+      let previousScene = previousRoute.scene;
       if (previousScene && previousScene.componentWillBlur) {
         previousScene.componentWillBlur(event);
       }
@@ -210,15 +211,16 @@ export default class ExRouteRenderer {
     if (route.onDidFocus) {
       route.onDidFocus(event);
     }
-    if (route.scene.componentDidFocus) {
+    if (route.scene && route.scene.componentDidFocus) {
       route.scene.componentDidFocus(event);
     }
 
-    if (this._previousRoute) {
-      if (this._previousRoute.onDidBlur) {
-        this._previousRoute.onDidBlur(event);
+    let previousRoute = this._previousRoute;
+    if (previousRoute) {
+      if (previousRoute.onDidBlur) {
+        previousRoute.onDidBlur(event);
       }
-      let previousScene = this._previousRoute.scene;
+      let previousScene = previousRoute.scene;
       if (previousScene && previousScene.componentDidBlur) {
         previousScene.componentDidBlur(event);
       }
