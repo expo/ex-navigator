@@ -106,7 +106,7 @@ class NavigationBarRouteMapper {
 
     return (
       <TouchableOpacity
-        touchRetentionOffset={ExNavigatorStyles.barButtonTouchRetentionOffset}
+        pressRetentionOffset={ExNavigatorStyles.barButtonPressRetentionOffset}
         onPress={() => this._navigator.pop()}
         style={[ExNavigatorStyles.barBackButton, styles.backButtonStyle]}>
         <BackIcon
