@@ -79,7 +79,7 @@ let ExNavigatorStyles = StyleSheet.create({
   },
 });
 
-ExNavigatorStyles.barButtonTouchRetentionOffset = {
+ExNavigatorStyles.barButtonPressRetentionOffset = {
   top: 40,
   left: 60,
   right: 60,
