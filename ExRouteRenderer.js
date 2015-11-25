@@ -95,11 +95,14 @@ class NavigationBarRouteMapper {
 
     if (title) {
       var buttonText =
-        <Text style={[
-          ExNavigatorStyles.barButtonText,
-          ExNavigatorStyles.barBackButtonText,
-          this._barButtonTextStyle,
-        ]}>
+        <Text 
+          numberOfLines={1} 
+          style={[
+            ExNavigatorStyles.barButtonText,
+            ExNavigatorStyles.barBackButtonText,
+            this._barButtonTextStyle,
+          ]}
+        >
           {title}
         </Text>;
     }
