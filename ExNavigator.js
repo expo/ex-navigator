@@ -16,14 +16,15 @@ import ExNavigatorMixin from './ExNavigatorMixin';
 import ExNavigatorStyles from './ExNavigatorStyles';
 import ExRouteRenderer from './ExRouteRenderer';
 import ExSceneConfigs from './ExSceneConfigs';
-import { BackIcon } from './ExNavigatorIcons';
+
+import * as ExNavigatorIcons from './ExNavigatorIcons';
 
 import type * as ExRoute from './ExRoute';
 
 export default class ExNavigator extends React.Component {
-  static Styles = ExNavigatorStyles
+  static Styles = ExNavigatorStyles;
   static SceneConfigs = ExSceneConfigs;
-  static Icons = {BackIcon: BackIcon};
+  static Icons = ExNavigatorIcons;
 
   static propTypes = {
     ...Navigator.props,
