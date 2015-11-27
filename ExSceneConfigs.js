@@ -62,6 +62,23 @@ let FromTheRight = {
     value: 1.0,
     type: 'constant',
   },
+  shadowOpacity: {
+    from: 0.1,
+    to: 0.5,
+    min: 0,
+    max: 1,
+    type: 'linear',
+    extrapolate: false,
+    round: 100,
+  },
+  shadowRadius: {
+    from: 2,
+    to: 6,
+    min: 0,
+    max: 1,
+    type: 'linear',
+    extrapolate: true,
+  },
   translateX: {
     from: Dimensions.get('window').width,
     to: 0,
