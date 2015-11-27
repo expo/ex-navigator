@@ -75,12 +75,14 @@ class NavigationBarRouteMapper {
 
     let previousIndex = index - 1;
     let previousRoute = state.routeStack[previousIndex];
-    return this._renderBackButton(previousRoute, this._navigator, previousIndex, state);
+    return this._renderBackButton(route, previousRoute, this._navigator, index, previousIndex, state);
   }
 
   _renderBackButton(
+    route: ExRoute,
     previousRoute: ExRoute,
     navigator: Navigator,
+    index: number,
     previousIndex: number,
     state: Object
   ): ?React.Component {
@@ -89,14 +91,16 @@ class NavigationBarRouteMapper {
     }
 
     let title;
-    if (previousRoute.getTitle) {
+    if(route.getBackButtonTitle){
+      title = route.getBackButtonTitle(this._navigator, index, state);
+    }else if (previousRoute.getTitle) {
       title = previousRoute.getTitle(this._navigator, previousIndex, state);
     }
 
     if (title) {
       var buttonText =
-        <Text 
-          numberOfLines={1} 
+        <Text
+          numberOfLines={1}
           style={[
             ExNavigatorStyles.barButtonText,
             ExNavigatorStyles.barBackButtonText,
