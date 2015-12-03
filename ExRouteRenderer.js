@@ -143,11 +143,6 @@ export default class ExRouteRenderer {
       navigator,
       styles,
     );
-
-    this.configureScene = this.configureScene.bind(this);
-    this.renderScene = this.renderScene.bind(this);
-    this.onWillFocus = this.onWillFocus.bind(this);
-    this.onDidFocus = this.onDidFocus.bind(this);
   }
 
   configureScene(route: ExRoute): Object {

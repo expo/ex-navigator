@@ -62,7 +62,7 @@ export default class ExNavigator extends React.Component {
       <Navigator
         {...this.props}
         ref={this._setNavigatorRef}
-        configureScene={this._routeRenderer.configureScene}
+        configureScene={route => this._routeRenderer.configureScene(route)}
         renderScene={this._renderScene}
         navigationBar={this._renderNavigationBar()}
         sceneStyle={[ExNavigatorStyles.scene, this.props.sceneStyle]}
@@ -128,11 +128,11 @@ export default class ExNavigator extends React.Component {
     let navigationContext = navigator.navigationContext;
     this._onWillFocusSubscription = navigationContext.addListener(
       'willfocus',
-      this._routeRenderer.onWillFocus,
+      event => this._routeRenderer.onWillFocus(event),
     );
     this._onDidFocusSubscription = navigationContext.addListener(
       'didfocus',
-      this._routeRenderer.onDidFocus,
+      event => this._routeRenderer.onDidFocus(event),
     );
     this._subscribedToFocusEvents = true;
   }

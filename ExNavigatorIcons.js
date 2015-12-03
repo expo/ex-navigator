@@ -8,11 +8,10 @@ import ResponsiveImage from '@exponent/react-native-responsive-image';
 
 import Layout from './Layout';
 
+let { sources, ...iconPropTypes } = ResponsiveImage.propTypes;
+
 export class BackIcon extends React.Component {
-  static propTypes = {
-    ...ResponsiveImage.propTypes,
-    sources: null,
-  };
+  static propTypes = iconPropTypes;
 
   render() {
     return (
