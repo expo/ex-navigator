@@ -15,17 +15,7 @@ Otherwise ExNavigator is very similar to Navigator.
 npm install @exponent/react-native-navigator --save
 ```
 
-You'll also need to enable several ES6 and ES7 features with Babel. In the root of your project create a file called ".babelrc" with the following JSON:
-
-```js
-{
-  "whitelist": [
-    "es6.modules",
-    "es7.classProperties",
-    "es7.decorators"
-  ]
-}
-```
+ExNavigator is compatible with React Native 0.16 and newer.
 
 ## Usage
 
