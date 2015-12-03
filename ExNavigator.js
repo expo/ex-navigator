@@ -8,7 +8,6 @@ import React, {
   View,
 } from 'react-native';
 
-import autobind from 'autobind-decorator';
 import invariant from 'invariant';
 import cloneReferencedElement from 'react-native-clone-referenced-element';
 
@@ -53,6 +52,9 @@ export default class ExNavigator extends React.Component {
       barButtonTextStyle: props.barButtonTextStyle,
       barButtonIconStyle: props.barButtonIconStyle,
     });
+
+    this._renderScene = this._renderScene.bind(this);
+    this._setNavigatorRef = this._setNavigatorRef.bind(this);
   }
 
   render() {
@@ -69,7 +71,6 @@ export default class ExNavigator extends React.Component {
     );
   }
 
-  @autobind
   _renderScene(route: ExRoute, navigator: Navigator) {
     // We need to subscribe to the navigation context before the navigator is
     // mounted because it emits a didfocus event when it is mounted, before we
@@ -106,7 +107,6 @@ export default class ExNavigator extends React.Component {
     });
   }
 
-  @autobind
   _setNavigatorRef(navigator) {
     this.__navigator = navigator;
     if (navigator) {

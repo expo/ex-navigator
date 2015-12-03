@@ -9,7 +9,6 @@ import React, {
   View,
 } from 'react-native';
 
-import autobind from 'autobind-decorator';
 import invariant from 'invariant';
 import cloneReferencedElement from 'react-native-clone-referenced-element';
 
@@ -144,9 +143,13 @@ export default class ExRouteRenderer {
       navigator,
       styles,
     );
+
+    this.configureScene = this.configureScene.bind(this);
+    this.renderScene = this.renderScene.bind(this);
+    this.onWillFocus = this.onWillFocus.bind(this);
+    this.onDidFocus = this.onDidFocus.bind(this);
   }
 
-  @autobind
   configureScene(route: ExRoute): Object {
     if (route.configureScene) {
       let sceneConfig = route.configureScene();
@@ -162,7 +165,6 @@ export default class ExRouteRenderer {
     }
   }
 
-  @autobind
   renderScene(route: ExRoute, navigator: ExNavigator): React.Component {
     if (route.renderScene) {
       let scene = route.renderScene(navigator);
@@ -187,7 +189,6 @@ export default class ExRouteRenderer {
     );
   }
 
-  @autobind
   onWillFocus(event) {
     let { data: { route } } = event;
     if (route.onWillFocus) {
@@ -210,7 +211,6 @@ export default class ExRouteRenderer {
     }
   }
 
-  @autobind
   onDidFocus(event) {
     let { data: { route } } = event;
     if (route.onDidFocus) {
