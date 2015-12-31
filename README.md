@@ -155,4 +155,4 @@ class HomeScene extends React.Component {
 
 ### Flux-based navigation
 
-You can use the ExNavigator routing framework using Actions to change the route instead of passing around a navigator. [react-native-router-flex](https://github.com/aksonov/react-native-router-flux) is built on top of ExNavigator.
+You can use the ExNavigator routing framework using Actions to change the route instead of passing around a navigator. [react-native-router-flux](https://github.com/aksonov/react-native-router-flux) is built on top of ExNavigator.
