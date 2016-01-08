@@ -86,6 +86,11 @@ class NavigationBarRouteMapper {
       return previousRoute.renderBackButton(this._navigator, previousIndex, state);
     }
 
+    let defaultRenderBackButton = this._navigator.props.renderBackButton;
+    if (defaultRenderBackButton) {
+      return defaultRenderBackButton(this._navigator, previousIndex, state);
+    }
+
     let title;
     if (route.getBackButtonTitle){
       title = route.getBackButtonTitle(this._navigator, index, state);
