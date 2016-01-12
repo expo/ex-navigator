@@ -40,6 +40,10 @@ export default {
     return this.__navigator.replacePrevious(route);
   },
 
+  resetTo(route) {
+    return this.__navigator.resetTo(route);
+  },
+
   immediatelyResetRouteStack(routeStack) {
     return this.__navigator.immediatelyResetRouteStack(routeStack);
   },
