@@ -9,7 +9,7 @@ import React, {
 } from 'react-native';
 
 import invariant from 'invariant';
-import cloneReferencedElement from 'react-native-clone-referenced-element';
+import cloneReferencedElement from 'react-clone-referenced-element';
 
 import ExNavigatorMixin from './ExNavigatorMixin';
 import ExNavigatorStyles from './ExNavigatorStyles';
