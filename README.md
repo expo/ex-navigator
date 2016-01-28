@@ -153,6 +153,19 @@ class HomeScene extends React.Component {
 }
 ```
 
+### iOS Scene Transition Shadow
+
+The default scene config, `FloatFromRight`, has the ability to display a shadow just like it does natively on iOS. However, you need to define your own shadow. Add the following styles in the `sceneStyle` property on your `ExNavigator` component:
+
+```
+sceneStyle={{
+  overflow: 'visible',
+  shadowColor: '#000',
+  shadowOpacity: 0.5,
+  shadowRadius: 6
+}}
+```
+
 ### Flux-based navigation
 
 You can use the ExNavigator routing framework using Actions to change the route instead of passing around a navigator. [react-native-router-flux](https://github.com/aksonov/react-native-router-flux) is built on top of ExNavigator.
