@@ -116,7 +116,7 @@ let YourRouter = {
         return (
           <Button onPress={() => { console.log('Tapped right button'); }}>
             Log
-          <Button>
+          </Button>
         );
       },
     };
