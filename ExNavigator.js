@@ -1,9 +1,9 @@
 'use strict';
 
-import React, {
+import React, { PropTypes } from 'react';
+import {
   Image,
   Navigator,
-  PropTypes,
   Text,
   View,
 } from 'react-native';
