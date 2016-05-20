@@ -55,6 +55,14 @@ export default {
   popToTop() {
     return this.__navigator.popToTop();
   },
+  
+  replacePreviousAndPop(route) {
+    return this.__navigator.replacePreviousAndPop(route);
+  },
+  
+  resetTo(route) {
+    return this.__navigator.resetTo(route);
+  },
 
   // Convenience methods
 
