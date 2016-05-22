@@ -59,10 +59,6 @@ export default {
   replacePreviousAndPop(route) {
     return this.__navigator.replacePreviousAndPop(route);
   },
-  
-  resetTo(route) {
-    return this.__navigator.resetTo(route);
-  },
 
   // Convenience methods
 
