@@ -1,5 +1,9 @@
 # ExNavigator [![Slack](http://slack.exponentjs.com/badge.svg)](http://slack.exponentjs.com)
 
+> **Deprecation Warning** There are a few bugs in ex-navigator that require mutation of the state for the state to pass through the Navigator [[Issue 110](https://github.com/exponentjs/ex-navigator/issues/110)]. It's highly reccommended to use the new [Ex-Navigation](https://github.com/exponentjs/ex-navigation) instead as it's a powered by React Native's "NavigationExperimental".
+
+
+
 ExNavigator is a scene navigator that is centered around routes and is built on top of React Native's Navigator. You define ExRoutes, which are plain JavaScript objects with functions to render the scene for the route and the components to display in the nav bar.
 
 The API is in ExRoute.js and ExRouteRenderer.js.
