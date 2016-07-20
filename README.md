@@ -1,6 +1,6 @@
 # ExNavigator [![Slack](http://slack.exponentjs.com/badge.svg)](http://slack.exponentjs.com)
 
-> **Deprecation Warning** There are a few bugs in ex-navigator that require mutation of the state for the state to pass through the Navigator [[Issue 110](https://github.com/exponentjs/ex-navigator/issues/110)]. It's highly reccommended to use the new [Ex-Navigation](https://github.com/exponentjs/ex-navigation) instead as it's a powered by React Native's "NavigationExperimental".
+> **Deprecation Warning** There are a few bugs in ex-navigator that require mutation of the state for the state to pass through the Navigator [[Issue 110](https://github.com/exponentjs/ex-navigator/issues/110)]. It's highly reccommended to use the new [ex-navigation](https://github.com/exponentjs/ex-navigation) instead as it's a powered by React Native's "NavigationExperimental".
 
 
 
