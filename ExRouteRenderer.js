@@ -258,4 +258,3 @@ let styles = StyleSheet.create({
   },
 });
 
-export default ExRouteRenderer;
