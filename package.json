@@ -1,6 +1,6 @@
 {
   "name": "@exponent/react-native-navigator",
-  "version": "0.4.8",
+  "version": "0.4.9",
   "description": "Route-centric navigation built on top of React Native's Navigator",
   "main": "ExNavigator.js",
   "repository": {
