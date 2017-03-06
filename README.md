@@ -1,8 +1,15 @@
-# ExNavigator [![Slack](http://slack.exponentjs.com/badge.svg)](http://slack.exponentjs.com)
+# ExNavigator [![Slack](http://slack.expo.io/badge.svg)](http://slack.expo.io)
 
-> **Deprecation Warning** There are a few bugs in ex-navigator that require mutation of the state for the state to pass through the Navigator [[Issue 110](https://github.com/exponentjs/ex-navigator/issues/110)]. It's highly reccommended to use the new [ex-navigation](https://github.com/exponentjs/ex-navigation) instead as it's a powered by React Native's "NavigationExperimental".
-
-
+> **Deprecation Warning** There are a few bugs in ex-navigator that
+require mutation of the state for the state to pass through the
+Navigator [[Issue
+110](https://github.com/expo/ex-navigator/issues/110)]. ~It's
+highly reccommended to use the new
+[ex-navigation](https://github.com/expo/ex-navigation) instead as
+it's a powered by React Native's "NavigationExperimental".~ It's
+recommend to use
+[react-navigation](https://github.com/react-community/react-navigation)
+instead.
 
 ExNavigator is a scene navigator that is centered around routes and is built on top of React Native's Navigator. You define ExRoutes, which are plain JavaScript objects with functions to render the scene for the route and the components to display in the nav bar.
 
@@ -16,7 +23,7 @@ Otherwise ExNavigator is very similar to Navigator.
 ## Installation
 
 ```
-npm install @exponent/react-native-navigator --save
+npm install @expo/react-native-navigator --save
 ```
 
 ExNavigator is compatible with React Native 0.16 and newer.
@@ -34,7 +41,7 @@ ExNavigator's component API looks very similar to Navigator's. You specify a `ro
 **You must use JavaScript's `import` keyword to import ExNavigator. Do not use `require()`.**
 
 ```js
-import ExNavigator from '@exponent/react-native-navigator';
+import ExNavigator from '@expo/react-native-navigator';
 
 class Example extends React.Component {
   render() {
