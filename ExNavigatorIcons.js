@@ -5,7 +5,7 @@ import {
   StyleSheet,
   View,
 } from 'react-native';
-import ResponsiveImage from '@exponent/react-native-responsive-image';
+import ResponsiveImage from '@expo/react-native-responsive-image';
 
 import Layout from './Layout';
 
