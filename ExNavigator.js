@@ -3,7 +3,7 @@
 import PropTypes from 'prop-types';
 import React from 'react';
 import { Image, Text, View } from 'react-native';
-import { Navigator } from 'react-native-custom-components';
+import { Navigator } from 'react-native-deprecated-custom-components';
 
 import invariant from 'invariant';
 import cloneReferencedElement from 'react-clone-referenced-element';

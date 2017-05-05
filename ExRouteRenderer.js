@@ -19,7 +19,7 @@ import Layout from './Layout';
 
 import { BackIcon } from './ExNavigatorIcons';
 
-import type { Navigator } from 'react-native-custom-components';
+import type { Navigator } from 'react-native-deprecated-custom-components';
 import type * as ExNavigator from './ExNavigator';
 import type * as ExRoute from './ExRoute';
 

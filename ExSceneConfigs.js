@@ -1,7 +1,7 @@
 'use strict';
 
 import { Dimensions, PixelRatio } from 'react-native';
-import { Navigator } from 'react-native-custom-components';
+import { Navigator } from 'react-native-deprecated-custom-components';
 
 import buildStyleInterpolator from './vendor/buildStyleInterpolator';
 
