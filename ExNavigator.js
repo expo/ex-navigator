@@ -1,14 +1,9 @@
 'use strict';
 
-import React, {
-  PropTypes,
-} from 'react';
-import {
-  Image,
-  Navigator,
-  Text,
-  View,
-} from 'react-native';
+import PropTypes from 'prop-types';
+import React from 'react';
+import { Image, Text, View } from 'react-native';
+import { Navigator } from 'react-native-custom-components';
 
 import invariant from 'invariant';
 import cloneReferencedElement from 'react-clone-referenced-element';
@@ -43,7 +38,7 @@ export default class ExNavigator extends React.Component {
     ...Navigator.defaultProps,
     showNavigationBar: true,
     renderNavigationBar: props => {
-      return <Navigator.NavigationBar {...props} />
+      return <Navigator.NavigationBar {...props} />;
     },
   };
 
@@ -93,7 +88,9 @@ export default class ExNavigator extends React.Component {
     let firstRoute = navigator.getCurrentRoutes()[0];
     if (route === firstRoute) {
       scene = cloneReferencedElement(scene, {
-        ref: component => { this._firstScene = component; },
+        ref: component => {
+          this._firstScene = component;
+        },
       });
     }
     return scene;
@@ -115,7 +112,7 @@ export default class ExNavigator extends React.Component {
     if (navigator) {
       invariant(
         this._subscribedToFocusEvents,
-        'Expected to have subscribed to the navigator before it was mounted.',
+        'Expected to have subscribed to the navigator before it was mounted.'
       );
     } else {
       this._unsubscribeFromFocusEvents(navigator);
@@ -125,17 +122,17 @@ export default class ExNavigator extends React.Component {
   _subscribeToFocusEvents(navigator) {
     invariant(
       !this._subscribedToFocusEvents,
-      'The navigator is already subscribed to focus events',
+      'The navigator is already subscribed to focus events'
     );
 
     let navigationContext = navigator.navigationContext;
     this._onWillFocusSubscription = navigationContext.addListener(
       'willfocus',
-      event => this._routeRenderer.onWillFocus(event),
+      event => this._routeRenderer.onWillFocus(event)
     );
     this._onDidFocusSubscription = navigationContext.addListener(
       'didfocus',
-      event => this._routeRenderer.onDidFocus(event),
+      event => this._routeRenderer.onDidFocus(event)
     );
     this._subscribedToFocusEvents = true;
   }
@@ -159,9 +156,9 @@ export default class ExNavigator extends React.Component {
     // property has been set but we don't have a reference to the Navigator;
     // when that happens we'll simulate Navigator and return our `navigator`
     // prop.
-    return !this.__navigator ?
-      this.props.navigator :
-      this.__navigator.parentNavigator;
+    return !this.__navigator
+      ? this.props.navigator
+      : this.__navigator.parentNavigator;
   }
 }
 

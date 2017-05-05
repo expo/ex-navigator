@@ -1,6 +1,6 @@
 {
   "name": "@expo/react-native-navigator",
-  "version": "0.4.10",
+  "version": "0.5.0",
   "description": "Route-centric navigation built on top of React Native's Navigator",
   "main": "ExNavigator.js",
   "repository": {
@@ -23,6 +23,8 @@
   "dependencies": {
     "@expo/react-native-responsive-image": "^1.2.1",
     "invariant": "^2.2.0",
-    "react-clone-referenced-element": "^1.0.1"
+    "prop-types": "^15.5.8",
+    "react-clone-referenced-element": "^1.0.1",
+    "react-native-custom-components": "^1.0.0"
   }
 }

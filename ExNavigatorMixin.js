@@ -1,7 +1,6 @@
 'use strict';
 
 export default {
-
   // Navigator methods
 
   getCurrentRoutes() {
@@ -55,7 +54,7 @@ export default {
   popToTop() {
     return this.__navigator.popToTop();
   },
-  
+
   replacePreviousAndPop(route) {
     return this.__navigator.replacePreviousAndPop(route);
   },

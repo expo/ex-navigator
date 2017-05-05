@@ -1,10 +1,7 @@
 'use strict';
 
-import {
-  Dimensions,
-  Navigator,
-  PixelRatio,
-} from 'react-native';
+import { Dimensions, PixelRatio } from 'react-native';
+import { Navigator } from 'react-native-custom-components';
 
 import buildStyleInterpolator from './vendor/buildStyleInterpolator';
 
@@ -12,8 +9,8 @@ let ToTheLeft = {
   // Rotate *requires* you to break out each individual component of
   // rotation (x, y, z, w)
   transformTranslate: {
-    from: {x: 0, y: 0, z: 0},
-    to: {x: -Math.round(Dimensions.get('window').width * 0.3), y: 0, z: 0},
+    from: { x: 0, y: 0, z: 0 },
+    to: { x: -Math.round(Dimensions.get('window').width * 0.3), y: 0, z: 0 },
     min: 0,
     max: 1,
     type: 'linear',
@@ -50,8 +47,8 @@ let ToTheLeft = {
 
 let FromTheRight = {
   transformTranslate: {
-    from: {x: Dimensions.get('window').width, y: 0, z: 0},
-    to: {x: 0, y: 0, z: 0},
+    from: { x: Dimensions.get('window').width, y: 0, z: 0 },
+    to: { x: 0, y: 0, z: 0 },
     min: 0,
     max: 1,
     type: 'linear',
@@ -111,8 +108,8 @@ let FromTheBottom = {
     type: 'constant',
   },
   transformTranslate: {
-    from: {x: 0, y: Dimensions.get('window').height, z: 0},
-    to: {x: 0, y: 0, z: 0},
+    from: { x: 0, y: Dimensions.get('window').height, z: 0 },
+    to: { x: 0, y: 0, z: 0 },
     min: 0,
     max: 1,
     type: 'linear',
@@ -144,8 +141,8 @@ let ToTheBack = {
     type: 'constant',
   },
   transformScale: {
-    from: {x: 1, y: 1, z: 1},
-    to: {x: 0.95, y: 0.95, z: 1},
+    from: { x: 1, y: 1, z: 1 },
+    to: { x: 0.95, y: 0.95, z: 1 },
     min: 0,
     max: 1,
     type: 'linear',
@@ -180,8 +177,8 @@ let FromTheFront = {
     round: 100,
   },
   transformScale: {
-    from: {x: 1.05, y: 1.05, z: 1},
-    to: {x: 1, y: 1, z: 1},
+    from: { x: 1.05, y: 1.05, z: 1 },
+    to: { x: 1, y: 1, z: 1 },
     min: 0,
     max: 1,
     type: 'linear',

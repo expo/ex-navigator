@@ -1,10 +1,7 @@
 'use strict';
 
 import React from 'react';
-import {
-  StyleSheet,
-  View,
-} from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import ResponsiveImage from '@expo/react-native-responsive-image';
 
 import Layout from './Layout';

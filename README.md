@@ -1,10 +1,10 @@
-# ExNavigator [![Slack](http://slack.expo.io/badge.svg)](http://slack.expo.io)
+# ExNavigator
 
 > **Deprecation Warning** There are a few bugs in ex-navigator that
 require mutation of the state for the state to pass through the
 Navigator [[Issue
 110](https://github.com/expo/ex-navigator/issues/110)]. ~It's
-highly reccommended to use the new
+highly recommended to use the new
 [ex-navigation](https://github.com/expo/ex-navigation) instead as
 it's a powered by React Native's "NavigationExperimental".~ It's
 recommend to use

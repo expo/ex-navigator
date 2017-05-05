@@ -19,14 +19,14 @@ import Layout from './Layout';
 
 import { BackIcon } from './ExNavigatorIcons';
 
-import type { Navigator } from 'react-native';
+import type { Navigator } from 'react-native-custom-components';
 import type * as ExNavigator from './ExNavigator';
 import type * as ExRoute from './ExRoute';
 
 type BarStyles = {
-  titleStyle?: any;
-  barButtonTextStyle?: any;
-  barButtonIconStyle?: any;
+  titleStyle?: any,
+  barButtonTextStyle?: any,
+  barButtonIconStyle?: any,
 };
 
 class NavigationBarRouteMapper {
@@ -52,7 +52,9 @@ class NavigationBarRouteMapper {
     }
 
     return (
-      <Text style={[ExNavigatorStyles.barTitleText, this._titleStyle]} allowFontScaling={false}>
+      <Text
+        style={[ExNavigatorStyles.barTitleText, this._titleStyle]}
+        allowFontScaling={false}>
         {shortenTitle(route.getTitle(this._navigator, index, state))}
       </Text>
     );
@@ -64,7 +66,6 @@ class NavigationBarRouteMapper {
     index: number,
     state: Object
   ): ?React.Component {
-
     if (route.renderLeftButton) {
       return route.renderLeftButton(this._navigator, index, state);
     }
@@ -79,12 +80,16 @@ class NavigationBarRouteMapper {
   _renderBackButton(
     route: ExRoute,
     index: number,
-    state: Object,
+    state: Object
   ): ?React.Component {
     let previousIndex = index - 1;
     let previousRoute = state.routeStack[previousIndex];
     if (previousRoute.renderBackButton) {
-      return previousRoute.renderBackButton(this._navigator, previousIndex, state);
+      return previousRoute.renderBackButton(
+        this._navigator,
+        previousIndex,
+        state
+      );
     }
 
     let defaultRenderBackButton = this._navigator.props.renderBackButton;
@@ -93,7 +98,7 @@ class NavigationBarRouteMapper {
     }
 
     let title;
-    if (route.getBackButtonTitle){
+    if (route.getBackButtonTitle) {
       title = route.getBackButtonTitle(this._navigator, index, state);
     } else if (previousRoute.getTitle) {
       title = previousRoute.getTitle(this._navigator, previousIndex, state);
@@ -101,7 +106,7 @@ class NavigationBarRouteMapper {
 
     let buttonText;
     if (title) {
-      buttonText =
+      buttonText = (
         <Text
           numberOfLines={1}
           style={[
@@ -111,7 +116,8 @@ class NavigationBarRouteMapper {
           ]}
           allowFontScaling={false}>
           {title}
-        </Text>;
+        </Text>
+      );
     }
 
     return (
@@ -120,10 +126,7 @@ class NavigationBarRouteMapper {
         onPress={() => this._navigator.pop()}
         style={[ExNavigatorStyles.barBackButton, styles.backButtonStyle]}>
         <BackIcon
-          style={[
-            ExNavigatorStyles.barButtonIcon,
-            this._barButtonIconStyle,
-          ]}
+          style={[ExNavigatorStyles.barButtonIcon, this._barButtonIconStyle]}
         />
         {buttonText}
       </TouchableOpacity>
@@ -140,14 +143,14 @@ class NavigationBarRouteMapper {
       return route.renderRightButton(this._navigator, index, state);
     }
   }
-};
+}
 
 export default class ExRouteRenderer {
   constructor(navigator: ExNavigator, styles: BarStyles) {
     this._previousRoute = null;
     this.navigationBarRouteMapper = new NavigationBarRouteMapper(
       navigator,
-      styles,
+      styles
     );
   }
 
@@ -173,18 +176,22 @@ export default class ExRouteRenderer {
         return scene;
       }
       return cloneReferencedElement(scene, {
-        ref: component => { route.scene = component; },
+        ref: component => {
+          route.scene = component;
+        },
       });
     }
 
     invariant(
       route.getSceneClass,
-      'The route must implement renderScene or getSceneClass',
+      'The route must implement renderScene or getSceneClass'
     );
     let Component = route.getSceneClass();
     return (
       <Component
-        ref={component => { route.scene = component; }}
+        ref={component => {
+          route.scene = component;
+        }}
         navigator={navigator}
       />
     );
@@ -233,7 +240,7 @@ export default class ExRouteRenderer {
     }
     this._previousRoute = route;
   }
-};
+}
 
 // Long titles will run into the left and right button text or overflow even
 // further and just generally look gross so we try to limit the damage by
@@ -257,4 +264,3 @@ let styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-

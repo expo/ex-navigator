@@ -1,21 +1,13 @@
 'use strict';
 
-import React, {
-  StyleSheet,
-} from 'react-native';
+import React from 'react';
+import { StyleSheet } from 'react-native';
 
 import Colors from './Colors';
 import Layout from './Layout';
 
 let ExNavigatorStyles = StyleSheet.create({
-  navigator: { },
-  scene: {
-    backgroundColor: '#fff',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-  },
+  navigator: {},
   bar: {
     backgroundColor: '#f8f8f8',
     borderBottomColor: '#b2b2b2',
@@ -78,6 +70,14 @@ let ExNavigatorStyles = StyleSheet.create({
     marginLeft: 6,
   },
 });
+
+ExNavigatorStyles.scene = {
+  backgroundColor: '#fff',
+  top: 0,
+  left: 0,
+  bottom: 0,
+  right: 0,
+};
 
 ExNavigatorStyles.barButtonPressRetentionOffset = {
   top: 40,
