@@ -2,7 +2,6 @@
 
 import PropTypes from 'prop-types';
 import React from 'react';
-import { Image, Text, View } from 'react-native';
 import { Navigator } from 'react-native-deprecated-custom-components';
 
 import invariant from 'invariant';
@@ -25,10 +24,10 @@ export default class ExNavigator extends React.Component {
   static propTypes = {
     ...Navigator.props,
     showNavigationBar: PropTypes.bool,
-    navigationBarStyle: View.propTypes.style,
-    titleStyle: Text.propTypes.style,
-    barButtonTextStyle: Text.propTypes.style,
-    barButtonIconStyle: Image.propTypes.style,
+    navigationBarStyle: PropTypes.any,
+    titleStyle: PropTypes.any,
+    barButtonTextStyle: PropTypes.any,
+    barButtonIconStyle: PropTypes.any,
     renderNavigationBar: PropTypes.func,
     renderBackButton: PropTypes.func,
     augmentScene: PropTypes.func,
